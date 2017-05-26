@@ -1,4 +1,4 @@
-package com.rafaelbattesti;
+package com.stocktrader;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
