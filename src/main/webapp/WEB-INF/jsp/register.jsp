@@ -50,7 +50,7 @@
 				<form:label path="password">
 					<spring:message code="registerForm.form.password" />:
 				</form:label>
-				<form:input path="password" class="form-control"
+				<form:input path="password" type="password" class="form-control"
 					placeholder="${passwordPlaceholder}" />
 				<form:errors cssClass="error" path="password"></form:errors>
 			</div>
