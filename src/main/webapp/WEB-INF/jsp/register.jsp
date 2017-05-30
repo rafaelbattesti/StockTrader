@@ -1,59 +1,70 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@include file="include/header.jsp"%>
 
+<div class="panel panel-default">
 
-<!-- Begin Taglibs -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!-- End Taglibs -->
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Registration</title>
-</head>
-<body>
-
-	<div>
-		<h1>Sign Up</h1>
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<spring:message code="registerForm.form.title" />:
+		</h3>
 	</div>
 
-	<div>
+	<div class="panel-body">
 		<form:form class="form" modelAttribute="registerForm" role="form">
 
-			<div>
-				<form:label path="username">username</form:label>
-				<form:input path="username" type="text" placeholder="Your username" />
-				<p>Enter a unique username. It will also be your login username.</p>
+			<div class="form-group">
+				<spring:message code="registerForm.form.username.placeholder"
+					var="namePlaceholder" />
+				<form:label path="username">
+					<spring:message code="registerForm.form.username" />:
+				</form:label>
+				<form:input path="username" class="form-control"
+					placeholder="${namePlaceholder}" />
+				<form:errors cssClass="error" path="username"></form:errors>
+			</div>
+
+			<div class="form-group">
+				<spring:message code="registerForm.form.email.placeholder"
+					var="emailPlaceholder" />
+				<form:label path="email">
+					<spring:message code="registerForm.form.email" />:
+				</form:label>
+				<form:input path="email" class="form-control" type="email"
+					placeholder="${emailPlaceholder}" />
+				<form:errors cssClass="error" path="email"></form:errors>
+			</div>
+
+			<div class="form-group">
+				<spring:message code="registerForm.form.fullname.placeholder"
+					var="fullnamePlaceholder" />
+				<form:label path="fullname">
+					<spring:message code="registerForm.form.fullname" />:
+				</form:label>
+				<form:input path="fullname" class="form-control"
+					placeholder="${fullnamePlaceholder}" />
+				<form:errors cssClass="error" path="fullname"></form:errors>
+			</div>
+
+			<div class="form-group">
+				<spring:message code="registerForm.form.password.placeholder"
+					var="passwordPlaceholder" />
+				<form:label path="password">
+					<spring:message code="registerForm.form.password" />:
+				</form:label>
+				<form:input path="password" class="form-control"
+					placeholder="${passwordPlaceholder}" />
+				<form:errors cssClass="error" path="password"></form:errors>
 			</div>
 
 			<div>
-				<form:label path="email">email</form:label>
-				<form:input path="email" type="email" placeholder="Your email" />
-				<p>Enter your email address. We will not spam you.</p>
-			</div>
-
-			<div>
-				<form:label path="fullname">full name</form:label>
-				<form:input path="fullname" type="text" placeholder="Your full name" />
-				<p>Enter your full name.</p>
-			</div>
-
-			<div>
-				<form:label path="password">password</form:label>
-				<form:input path="password" type="password" placeholder="Your password" />
-				<p>Enter your password.</p>
-			</div>
-			
-			<div>
-			<button type="submit">register</button>
-			<button type="reset">clear</button>
+				<button class="btn btn-primary" type="submit">
+					<spring:message code="registerForm.form.submit" />
+				</button>
+				<button class="btn btn-default" type="reset">
+					<spring:message code="registerForm.form.reset" />
+				</button>
 			</div>
 
 		</form:form>
 	</div>
-
-</body>
-</html>
+</div>
+<%@include file="include/footer.jsp"%>

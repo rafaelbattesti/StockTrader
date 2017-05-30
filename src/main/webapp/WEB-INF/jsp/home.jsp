@@ -1,24 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Stock Trader Home</title>
-</head>
-<body>
+<%@include file="include/header.jsp" %>
 
-	<div>Logo</div>
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Welcome to Stock Trader</h1>
+        <p>Create your stocks dashboards, receive trading signals, and more.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="/member/register" role="button">Sign Up &raquo;</a>
+        </p>
+      </div>
 
-	<div>Menu</div>
-
-	<div>
-		<h1>Stock Trader</h1>
-	</div>
-
-	<div>Content</div>
-
-	<div>Footer</div>
-
-</body>
-</html>
+<%@include file="include/footer.jsp"%>
