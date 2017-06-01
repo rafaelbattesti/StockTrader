@@ -19,7 +19,7 @@
 
 <!-- Bootstrap -->
 <link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/ichimoku.css" rel="stylesheet">
+<!-- <link href="/css/ichimoku.css" rel="stylesheet"> -->
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,7 +29,6 @@
     <![endif]-->
 </head>
 <body>
-
 
     <div class="container">
 
@@ -50,6 +49,7 @@
               <li class="active"><a href="/home">Home</a></li>
               <li><a href="/member/register">Register</a></li>
               <li><a href="/member/tradingsignal">Trading Signal</a></li>
+              <li><a href="/admin/watchlist">Watchlist</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu">
