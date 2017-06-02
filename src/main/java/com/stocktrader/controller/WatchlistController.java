@@ -26,6 +26,24 @@ import com.stocktrader.util.WatchlistMapper;
 @RequestMapping("/admin/watchlist")
 public class WatchlistController {
 	
+	//URLs
+	private static final String URL_CREATE = "/create";
+	private static final String URL_EDIT = "/edit";
+	private static final String URL_DELETE = "/delete";
+	
+	//Request Parameters
+	private static final String PARAM_SYMBOL = "symbol";
+	
+	//Views
+	private static final String V_WATCHLIST = "watchlist";
+	private static final String V_WATCHLIST_REDIRECT = "redirect:/admin/watchlist";
+	private static final String V_WATCHLIST_EDIT = "watchlist-edit";
+	private static final String V_WATCHLIST_EDIT_REDIRECT = "redirect:/admin/watchlist/edit";
+	
+	//Model Attributes
+	private static final String DTO_WATCHLIST = "watchlistForm";
+	private static final String WATCHLIST_COLLECTION = "watchlists";
+	
 	private static Logger logger = LoggerFactory.getLogger(WatchlistController.class);
 
 	@Autowired
@@ -34,38 +52,38 @@ public class WatchlistController {
 	@Autowired
 	private WatchlistMapper mapper;
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String doGetWatchlist(Model model) {
 		
 		//Display all watchlists
 		List<Watchlist> watchlists = (List<Watchlist>) watchlistRepository.findAll();
-		model.addAttribute("watchlists", watchlists);
+		model.addAttribute(WATCHLIST_COLLECTION, watchlists);
 		
 		//Let Users add new symbols at the same page
 		WatchlistForm watchlistForm = new WatchlistForm();
-		model.addAttribute("watchlistForm", watchlistForm);
+		model.addAttribute(DTO_WATCHLIST, watchlistForm);
 		logger.info(watchlistForm.toString());
 		
-		return "watchlist";
+		return V_WATCHLIST;
 	}
 	
-	@RequestMapping(value="/create", method=RequestMethod.POST)
-	public String doPostCreateWatchlist(@ModelAttribute("watchlistForm") @Valid WatchlistForm watchlistForm, BindingResult result) {
+	@RequestMapping(value = URL_CREATE, method = RequestMethod.POST)
+	public String doPostCreateWatchlist(@ModelAttribute(DTO_WATCHLIST) @Valid WatchlistForm watchlistForm, BindingResult result) {
 		
 		if (result.hasErrors()) {
-			return "redirect:/admin/watchlist";
+			return V_WATCHLIST_REDIRECT;
 		}
 		
 		//Map DTO to the domain class to save new record and save
 		Watchlist watchlist = mapper.map(watchlistForm);
 		watchlistRepository.save(watchlist);
-		return "redirect:/admin/watchlist";
+		return V_WATCHLIST_REDIRECT;
 	}
 	
-	@RequestMapping(value="/edit", method=RequestMethod.GET)
-	public ModelAndView doGetEditWatchlist(@RequestParam(value="symbol", required=true) String symbol) {
+	@RequestMapping(value = URL_EDIT, method = RequestMethod.GET)
+	public ModelAndView doGetEditWatchlist(@RequestParam(value = PARAM_SYMBOL, required = true) String symbol) {
 		
-		ModelAndView modelAndView = new ModelAndView("watchlist-edit");
+		ModelAndView modelAndView = new ModelAndView(V_WATCHLIST_EDIT);
 		Watchlist watchlist = watchlistRepository.findBySymbol(symbol);
 		WatchlistForm watchlistForm = mapper.map(watchlist);
 		modelAndView.addObject(watchlistForm);
@@ -73,27 +91,27 @@ public class WatchlistController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/edit", method=RequestMethod.POST)
-	public String doPostEditWatchlist(@ModelAttribute("watchlistForm") @Valid WatchlistForm watchlistForm, BindingResult result) {
+	@RequestMapping(value = URL_EDIT, method = RequestMethod.POST)
+	public String doPostEditWatchlist(@ModelAttribute(DTO_WATCHLIST) @Valid WatchlistForm watchlistForm, BindingResult result) {
 		
 		if (result.hasErrors()) {
-			return "redirect:/admin/watchlist/edit";
+			return V_WATCHLIST_EDIT_REDIRECT;
 		}
 		
 		//Map DTO to the domain class to save new record and save
 		Watchlist watchlist = mapper.map(watchlistForm);
 		watchlistRepository.save(watchlist);
-		return "redirect:/admin/watchlist";
+		return V_WATCHLIST_REDIRECT;
 	}
 	
-	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String doGetDeleteWatchlist(@RequestParam(value="symbol", required=true) String symbol) {
+	@RequestMapping(value = URL_DELETE, method = RequestMethod.GET)
+	public String doGetDeleteWatchlist(@RequestParam(value = PARAM_SYMBOL, required = true) String symbol) {
 		
 		Watchlist watchlist = new Watchlist();
 		watchlist.setSymbol(symbol);
 		watchlistRepository.delete(watchlist);
 		
-		return "redirect:/admin/watchlist";
+		return V_WATCHLIST_REDIRECT;
 	}
 	
 }
