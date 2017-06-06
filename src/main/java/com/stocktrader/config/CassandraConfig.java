@@ -35,7 +35,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 
 	@Override
 	protected String getKeyspaceName() {
-		return "stocktrader";
+		return env.getProperty("cassandra.keyspace");
 	}
 
 }
