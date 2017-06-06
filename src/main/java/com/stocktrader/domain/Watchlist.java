@@ -8,10 +8,10 @@ import org.springframework.data.cassandra.mapping.Table;
 @Table("watchlist")
 public class Watchlist {
 	
-	@PrimaryKeyColumn(name="watchlistcode", type=PrimaryKeyType.PARTITIONED, ordinal=0)
+	@PrimaryKeyColumn(name = "watchlistcode", type = PrimaryKeyType.PARTITIONED, ordinal = 0)
 	private String watchlistcode;
 	
-	@PrimaryKeyColumn(name="symbol", type=PrimaryKeyType.PARTITIONED, ordinal=1)
+	@PrimaryKeyColumn(name = "symbol", type = PrimaryKeyType.PARTITIONED, ordinal = 1)
 	private String symbol;
 	
 	@Column("active")
