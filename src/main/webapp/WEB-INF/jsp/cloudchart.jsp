@@ -50,19 +50,19 @@ var ichimokuIndicator = techan.indicator.ichimoku();
 // Don't show where indicators don't have data
 var indicatorPreRoll = ichimokuIndicator.kijunSen()+ichimokuIndicator.senkouSpanB();
 
-d3.csv("/historical.csv", function(error, data) {
+d3.json("/data?symbol=${chart.symbol}", function(error, data) {
 	var accessor = candlestick.accessor();
 
 	data = data.map(function(d) {
 		// Open, high, low, close generally not required, is being used here to demonstrate colored volume
 		// bars
 		return {
-			date: parseDate(d.Date),
-			volume: +d.Volume,
-			open: +d.Open,
-			high: +d.High,
-			low: +d.Low,
-			close: +d.Close
+			date: parseDate(d.date),
+			open: +d.open,
+			high: +d.high,
+			low: +d.low,
+			close: +d.close,
+			volume: +d.volume
 		};
 	}).sort(function(a, b) { return d3.ascending(accessor.d(a), accessor.d(b)); });
 

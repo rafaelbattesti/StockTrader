@@ -8,13 +8,6 @@ text {
 	fill: #000;
 }
 
-button {
-	position: absolute;
-	right: 20px;
-	top: 440px;
-	display: none;
-}
-
 path.candle.body {
 	stroke-width: 0;
 }

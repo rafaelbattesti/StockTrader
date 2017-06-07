@@ -8,5 +8,6 @@
           <a class="btn btn-lg btn-primary" href="/member/register" role="button">Sign Up &raquo;</a>
         </p>
       </div>
+      </div>
 
 <%@include file="include/footer.jsp"%>

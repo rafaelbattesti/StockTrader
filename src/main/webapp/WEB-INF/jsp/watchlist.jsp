@@ -62,6 +62,7 @@
 
 	</div>
 </div>
+</div>
 <script type="text/javascript">
 function go(url) {
 	window.location = url;

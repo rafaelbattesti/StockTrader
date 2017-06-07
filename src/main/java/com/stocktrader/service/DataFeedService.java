@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -66,6 +65,7 @@ public class DataFeedService {
 		priceHigh = Float.parseFloat(feed[2]);
 		priceLow = Float.parseFloat(feed[3]);
 		priceClose = Float.parseFloat(feed[4]);
+		volume = Double.parseDouble(feed[5]);
 		
 		//Return POJO
 		return new StockQuote(symbol.toUpperCase(), priceDate, priceOpen, priceHigh, priceLow, priceClose, volume);
